@@ -226,21 +226,7 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
         </h1>
       </div>
 
-      {/* Loading... at bottom */}
-      <div className="absolute bottom-10 left-0 right-0 z-10 pointer-events-none flex items-center justify-center">
-        <span
-          className="text-[12px] tracking-[0.2em] uppercase"
-          style={{ color: "#52525b" }}
-        >
-          Loading
-          <span className="inline-flex w-[18px]" style={{ animation: "dots 1.4s steps(4,end) infinite" }}>
-            ...
-          </span>
-          <span className="text-[10px] text-text-muted block mt-2" style={{ opacity: 0.4 }}>
-            click anywhere to skip
-          </span>
-        </span>
-      </div>
+      {/* Empty bottom spacer */}
 
     </div>
   );
