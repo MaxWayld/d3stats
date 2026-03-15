@@ -63,7 +63,7 @@ export default function RecentTrades({ txs }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto max-h-[380px] scroll-fade">
+      <div className="flex-1 overflow-y-auto max-h-[380px] scroll-fade pr-2">
         {filtered.length === 0 && (
           <p className="text-text-muted text-sm py-8 text-center">No transactions</p>
         )}

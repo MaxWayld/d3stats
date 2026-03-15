@@ -40,7 +40,7 @@ export default function WhaleTracker({ addresses }: Props) {
         Top Accounts
       </span>
 
-      <div className="flex-1 overflow-y-auto max-h-[380px] scroll-fade">
+      <div className="flex-1 overflow-y-auto max-h-[380px] scroll-fade pr-2">
         {display.map((addr, i) => {
           const ethBalance = weiToEth(addr.coin_balance);
           const displayName = addr.name || shortenAddress(addr.hash);
