@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
 
@@ -10,8 +11,10 @@ const inter = Inter({
   display: "swap",
 });
 
+const GA_ID = "G-6HLC8CEM7E";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://d3stats.xyz"),
+  metadataBase: new URL("https://d3stats.com"),
   title: {
     template: "%s | D3Stats",
     default: "D3Stats | Analytics Dashboard for Doma Protocol",
@@ -54,6 +57,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`dark ${inter.variable}`}>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body className="font-sans bg-bg-primary text-text-primary antialiased">
         <AppShell>{children}</AppShell>
       </body>
