@@ -105,7 +105,7 @@ export default function WalletCheckerPage() {
   const [holdings, setHoldings] = useState<AddressTokenHolding[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
-  const [totalAddresses, setTotalAddresses] = useState("45,000+");
+  const [totalAddresses, setTotalAddresses] = useState("...");
   const autoChecked = useRef(false);
 
   useEffect(() => {
@@ -355,7 +355,7 @@ export default function WalletCheckerPage() {
           <div className="mt-6 max-w-[680px]" style={reveal(400)}>
             <button
               onClick={() => {
-                const text = `My @domaprotocol wallet is ${personality.title} ${personality.emoji}\nTop ${100 - score.overallScore}% of all wallets\n${score.transactionCount.toLocaleString("en-US")} txns | ${score.totalTokensHeld} tokens | ${score.domainTokensHeld} domains\n\nCheck yours at d3stats.xyz/wallet`;
+                const text = `My @domaprotocol wallet is ${personality.title} ${personality.emoji}\nTop ${100 - score.overallScore}% of all wallets\n${score.transactionCount.toLocaleString("en-US")} txns | ${score.totalTokensHeld} tokens | ${score.domainTokensHeld} domains\n\nCheck yours at d3stats.com/wallet`;
                 window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
               }}
               className="btn-gradient h-9 px-5 text-[13px] rounded-lg"

@@ -14,6 +14,7 @@ import { useInView } from "@/hooks/useInView";
 
 interface Props {
   tokens: TokenItem[];
+  immediate?: boolean;
 }
 
 const GRID = "48px 1.5fr 1fr 1fr 1fr";
@@ -29,7 +30,7 @@ function getSupplyNum(token: TokenItem): number {
   return 0;
 }
 
-export default function TopDomains({ tokens, immediate }: Props & { immediate?: boolean }) {
+export default function TopDomains({ tokens, immediate }: Props) {
   const inView = useInView();
   const ref = immediate ? undefined : inView.ref;
   const row = immediate

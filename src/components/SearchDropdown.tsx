@@ -112,6 +112,8 @@ export default function SearchDropdown() {
     );
   };
 
+  const isMac = typeof navigator !== 'undefined' && /Mac/.test(navigator.userAgent);
+
   return (
     <div ref={containerRef} className="relative max-w-[360px] w-full">
       <Search
@@ -124,7 +126,7 @@ export default function SearchDropdown() {
         value={query}
         onChange={(e) => handleChange(e.target.value)}
         onFocus={() => setOpen(true)}
-        placeholder="Search... (Ctrl+K)"
+        placeholder={`Search... (${isMac ? '⌘' : 'Ctrl'}+K)`}
         data-search-input
         className="w-full h-8 pl-8 pr-3 text-[13px] rounded-md bg-bg-surface border border-border text-text-primary placeholder:text-text-muted outline-none focus:border-text-muted transition-colors"
       />

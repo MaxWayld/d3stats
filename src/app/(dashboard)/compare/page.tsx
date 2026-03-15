@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { formatLargeNumber, tokenAmount, type TokenItem, type TokenCounters } from "@/lib/doma-api";
 
 const API = "/api/explorer";
@@ -23,6 +23,12 @@ export default function ComparePage() {
   const [dropdowns, setDropdowns] = useState<SearchResultItem[][]>([[], [], []]);
   const [loadingSlot, setLoadingSlot] = useState<number | null>(null);
   const debounceRefs = useRef<(ReturnType<typeof setTimeout> | null)[]>([null, null, null]);
+
+  useEffect(() => {
+    return () => {
+      debounceRefs.current.forEach(t => { if (t) clearTimeout(t); });
+    };
+  }, []);
 
   const searchDomain = useCallback(async (q: string, slotIndex: number) => {
     if (!q.trim()) {
@@ -88,7 +94,11 @@ export default function ComparePage() {
         return next;
       });
     } catch {
-      // silently fail
+      setSlots(prev => {
+        const next = [...prev];
+        next[slotIndex] = null;
+        return next;
+      });
     } finally {
       setLoadingSlot(null);
     }

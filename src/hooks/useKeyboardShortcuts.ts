@@ -9,7 +9,7 @@ export function useKeyboardShortcuts() {
     function handleKey(e: KeyboardEvent) {
       // Don't trigger if user is typing in an input
       const tag = (e.target as HTMLElement).tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement).isContentEditable) return;
 
       switch (e.key) {
         case "/":

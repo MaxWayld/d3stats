@@ -7,8 +7,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <DashboardShell>
       <KeyboardShortcutsProvider>
         {children}
+        <ShortcutsModal />
       </KeyboardShortcutsProvider>
-      <ShortcutsModal />
     </DashboardShell>
   );
 }

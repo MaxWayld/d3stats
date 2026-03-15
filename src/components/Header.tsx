@@ -32,7 +32,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
     >
       <div className="flex items-center gap-1.5 text-sm">
         {onMenuToggle && (
-          <button onClick={onMenuToggle} className="md:hidden text-text-secondary hover:text-text-primary mr-2">
+          <button onClick={onMenuToggle} aria-label="Toggle navigation menu" className="md:hidden text-text-secondary hover:text-text-primary mr-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="3" y1="6" x2="21" y2="6" />
               <line x1="3" y1="12" x2="21" y2="12" />
@@ -58,6 +58,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
           onClick={() => window.location.reload()}
           className="hidden md:block text-text-muted hover:text-text-secondary transition-colors"
           title="Refresh data"
+          aria-label="Refresh data"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polyline points="23 4 23 10 17 10" />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -12,6 +12,11 @@ const inter = Inter({
 });
 
 const GA_ID = "G-6HLC8CEM7E";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://d3stats.com"),
@@ -31,49 +36,25 @@ export const metadata: Metadata = {
       "Track Doma chain activity, explore 400+ domain tokens, score any wallet, compare domains and monitor network health. Built for the Doma ecosystem.",
     type: "website",
     siteName: "D3Stats",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "D3Stats - Doma Protocol Analytics Dashboard",
-      },
-    ],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "D3Stats - Doma Protocol Analytics Dashboard" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "D3Stats - Analytics & Data for Doma Protocol",
-    description:
-      "Track Doma chain activity, explore domain tokens, score wallets. Real-time analytics for the Doma ecosystem.",
+    description: "Track Doma chain activity, explore domain tokens, score wallets. Real-time analytics for the Doma ecosystem.",
     creator: "@MaxWayld",
     images: ["/opengraph-image.png"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${inter.variable}`}>
-      <head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
-      </head>
       <body className="font-sans bg-bg-primary text-text-primary antialiased">
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}',{page_path:window.location.pathname});`}
+        </Script>
         <AppShell>{children}</AppShell>
       </body>
     </html>

@@ -18,7 +18,7 @@ interface Props {
 type FilterTab = "All" | "Transfers" | "Contracts";
 
 export default function RecentTrades({ txs }: Props) {
-  const { ref, visible, row } = useInView();
+  const { ref, row } = useInView();
   const [filter, setFilter] = useState<FilterTab>("All");
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => { setHydrated(true); }, []);

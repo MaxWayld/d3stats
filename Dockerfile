@@ -1,17 +1,17 @@
-# ── Stage 1: Install dependencies ──
+# Stage 1: Install ALL dependencies (dev included for build)
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev
+RUN npm ci
 
-# ── Stage 2: Build ──
+# Stage 2: Build
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# ── Stage 3: Production ──
+# Stage 3: Production (minimal)
 FROM node:20-alpine AS runner
 WORKDIR /app
 
@@ -22,7 +22,6 @@ ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy standalone output
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public

@@ -25,7 +25,7 @@ export default function HolderDonut({ holders }: Props) {
             animationDuration={800}
           >
             {holders.map((h, i) => (
-              <Cell key={i} fill={h.color} />
+              <Cell key={h.name} fill={h.color} />
             ))}
           </Pie>
           <Tooltip

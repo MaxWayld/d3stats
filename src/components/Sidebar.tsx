@@ -24,7 +24,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   return (
     <>
       {mobileOpen && (
-        <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={onClose} />
+        <div className="fixed inset-0 z-30 bg-black/40 md:hidden" role="presentation" aria-hidden="true" onClick={onClose} />
       )}
       <aside className={`fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col border-r border-border bg-bg-primary transition-transform duration-200
         ${mobileOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
